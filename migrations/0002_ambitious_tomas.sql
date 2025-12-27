@@ -1,0 +1,1 @@
+ALTER TABLE "projectsTable" ALTER COLUMN "slides" DROP NOT NULL;
