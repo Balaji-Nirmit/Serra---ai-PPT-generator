@@ -30,7 +30,7 @@ export const generateCreativePrompt = async (userPrompt: string) => {
     try {
         const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
         const response = await ai.models.generateContent({
-            model: "gemini-2.0-flash",
+            model: "gemini-3-flash-preview",
             contents: finalPrompt
         })
         const rawText = response.text? response.text.trim() : '{}';
@@ -548,15 +548,14 @@ Output the layouts in JSON format. Ensure there are no duplicate layouts across 
     try {
         const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
         const response = await ai.models.generateContent({
-            model: "gemini-2.0-flash",
+            model: "gemini-3-flash-preview",
             contents: prompt
         })
-        const rawText = response.text? response.text.trim() : '{}';
-        
+        const rawText = response.text? response.text.trim() : '{}';        
         try{
             const cleanedText = rawText.replace(/^```json\s*|```\s*$/g, '');
             const jsonResponse = JSON.parse(cleanedText);
-            await Promise.all(jsonResponse.map(replaceImagePlaceholders))
+            // await Promise.all(jsonResponse.map(replaceImagePlaceholders))
             return { status: 200, data: jsonResponse };
         }catch(error){
             throw new Error("Invalid JSON format")
