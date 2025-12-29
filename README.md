@@ -1,2 +1,2 @@
 deployed link
-https://serra-ai-ppt-generator-dpn6.vercel.app
+https://serra-ai-ppt-generator.vercel.app
