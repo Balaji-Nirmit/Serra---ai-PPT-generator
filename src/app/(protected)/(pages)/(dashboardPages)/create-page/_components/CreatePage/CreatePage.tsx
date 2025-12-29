@@ -20,8 +20,8 @@ const CreatePage = ({ onSelectOption }: Props) => {
             className="space-y-8"
         >
             <motion.div variants={itemVariants} className="text-center space-y-2">
-                <h1 className="text-4xl font-bold text-primary">How would you like to get started?</h1>
-                <p className="text-secondary">Choose one of the options below</p>
+                <h1 className="text-5xl font-extrabold text-primary">How would you like to get started?</h1>
+                <p className="text-secondary text-3xl font-semibold">Choose one of the options below</p>
             </motion.div>
             <motion.div variants={containerVariants} className="grid md:grid-cols-3 gap-6">
                 {CreatePageCard.map((item, index) => (
@@ -30,17 +30,17 @@ const CreatePage = ({ onSelectOption }: Props) => {
                             scale: 1.05,
                             rotate: 1,
                             transition: { duration: 0.1 },
-                        }} className={`${item.highlight ? 'bg-vivid-gradient' : 'hover: bg-vivid-gradient border'} rounded-xl p-[1px] transition-all duration-300 ease-in-out`}>
+                        }} className={`${item.highlight ? 'border-3 border-coral' : 'hover: border-2'} rounded-xl p-[1px] transition-all duration-300 ease-in-out`}>
                         <motion.div
                             className="w-full p-4 flex flex-col gap-y-6 items-start bg-white dark:bg-black rounded-xl"
                             whileHover={{ transition: { duration: 0.1 } }}
                         >
                             <div className="flex flex-col items-start w-full gap-y-3">
                                 <div>
-                                    <p className="text-primary text-lg font-semibold">{item.title}</p>
-                                    <p className={`${item.highlight ? 'text-vivid' : 'text-primary'} text-4xl font-bold`}>{item.highlightedText}</p>
+                                    <p className="text-primary text-xl font-bold">{item.title}</p>
+                                    <p className={`${item.highlight ? 'highlightedCardText' : 'text-primary'} text-4xl font-bold`}>{item.highlightedText}</p>
                                 </div>
-                                <p className="text-secondary text-sm font-normal">{item.description}</p>
+                                <p className="text-secondary text-lg font-normal">{item.description}</p>
                             </div>
                             <motion.div
                             className="self-end"

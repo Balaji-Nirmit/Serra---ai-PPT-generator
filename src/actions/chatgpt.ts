@@ -10,7 +10,7 @@ import axios  from 'axios'
 export const generateCreativePrompt = async (userPrompt: string) => {
     const finalPrompt = `
     Create a coherent and engaging outline for the following prompt: ${userPrompt}.
-    The outline should consist of atleast 10 points, with each point written as a single sentence.
+    The outline should consist of atleast 5 points, with each point written as a single sentence.
     Ensure the outline is well-structured and directly related to the topic.
     Return the output in the following JSON format:
 
@@ -20,12 +20,7 @@ export const generateCreativePrompt = async (userPrompt: string) => {
             "Point 2",
             "Point 3",
             "Point 4",
-            "Point 5",
-            "Point 6",
-            "Point 7",
-            "Point 8",
-            "Point 9",
-            "Point 10",
+            "Point 5"
         ]
     }
     

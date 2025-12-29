@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button"
 import { SidebarGroup, SidebarGroupLabel, SidebarMenu, SidebarMenuButton, SidebarMenuItem } from "@/components/ui/sidebar"
 import { Projects } from "@/lib/types"
+import Link from "next/link"
 type Props = {
     recentProjects: Projects[]
 }
@@ -13,11 +14,11 @@ const RecentOpen = ({ recentProjects }: Props) => {
                     {recentProjects.length > 0 ? (
                         recentProjects.map((item, index) => (
                             <SidebarMenuItem key={item.id}>
-                                <SidebarMenuButton asChild tooltip={'test'} className={`hover:bg-primary-80`}>
+                                <SidebarMenuButton asChild tooltip={item.title} className={`hover:bg-primary-80`}>
                                     <Button variant={'link'}
                                         className={`text-xs items-center justify-start`}
                                     >
-                                        <span>Testing</span>
+                                        <Link href={`/presentation/${item.id}`}><span>{item.title}</span></Link>
                                     </Button>
                                 </SidebarMenuButton>
                             </SidebarMenuItem>

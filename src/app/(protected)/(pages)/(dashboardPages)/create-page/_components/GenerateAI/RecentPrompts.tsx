@@ -42,7 +42,7 @@ const RecentPrompts = () =>{
                         <p className="font-semibold text-sm text-muted-foreground">{timeAgo(item?.createdAt)}</p>
                     </div>
                     <div className="flex items-center gap-4">
-                        <span className="text-sm text-vivid">Creative AI</span>
+                        <span className="text-sm text-highlightedCardText">Creative AI</span>
                         <Button className="rounded-xl bg-primary-20 dark:hover:bg-gray-700 hover:bg-gray-200 text-primary"
                         variant="default"
                         size="sm"

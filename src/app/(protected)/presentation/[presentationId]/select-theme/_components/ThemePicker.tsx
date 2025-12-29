@@ -1,20 +1,22 @@
 'use client'
+
 import { generateLayouts } from "@/actions/chatgpt";
 import { Button } from "@/components/ui/button";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Theme } from "@/lib/types";
 import { useSlideStore } from "@/store/useSlideStore";
-import { Loader2, Wand2 } from "lucide-react";
+import { Loader2, Wand2, Check, Sparkles } from "lucide-react";
 import { useParams, useRouter } from "next/navigation";
 import { useState } from "react";
 import { toast } from "sonner";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 
 type Props = {
     selectedTheme: Theme
     themes: Theme[]
     onThemeSelect: (theme: Theme) => void
 }
+
 const ThemePicker = ({
     selectedTheme,
     themes,
@@ -24,88 +26,150 @@ const ThemePicker = ({
     const params = useParams();
     const { project, setSlides, currentTheme } = useSlideStore();
     const [loading, setLoading] = useState(false);
+
     const handleGenerateLayouts = async () => {
         setLoading(true);
         if (!selectedTheme) {
-            toast.error("Error", { description: "Please select a theme" })
-            return
-        }
-        if (project?.id === '') {
-            toast.error("Error", { description: "Project not found" })
-            router.push('/create-page')
+            toast.error("Selection Required", { description: "Please pick a visual identity." })
+            setLoading(false);
+            return;
         }
         try {
             const res = await generateLayouts(params.presentationId as string, currentTheme.name);
-            if (res.status !== 200 || !res?.data) {
-                throw new Error("Failed to generate layouts")
-            }
-            toast.success('Success', {
-                description: "Layouts generated successfully"
-            })
-            router.push(`/presentation/${project?.id}`)
-            setSlides(res.data)
+            if (res.status !== 200 || !res?.data) throw new Error();
+            
+            toast.success('Architecture Ready', { description: "Layouts synchronized successfully." });
+            router.push(`/presentation/${project?.id}`);
+            setSlides(res.data);
         } catch (error) {
-            toast.error("Error", {
-                description: "Failed to generate layouts. Please try again."
-            })
+            toast.error("Generation Failed", { description: "Please check your connection." });
         } finally {
             setLoading(false);
         }
     }
+
     return (
-        <>
-            <div className="w-[400px] overflow-hidden sticky top-0 h-screen flex flex-col "
-                style={{ backgroundColor: selectedTheme.sidebarColor || selectedTheme.backgroundColor, border: `1px solid ${selectedTheme.accentColor}20` }}>
-                <div className="p-8 space-y-6 flex-shrink-0">
-                    <div className="space-y-2">
-                        <h2 className="text-3xl font-bold tracking-light" style={{ color: selectedTheme.accentColor }}>Pick a theme</h2>
-                        <p className="text-sm" style={{ color: `${selectedTheme.accentColor}80` }}>Pick from these themes</p>
-                    </div>
-                    <Button className="w-full h-12 text-lg font-medium shadow-lg hover:shadow-xl transition-all duration-300"
-                        style={{
-                            backgroundColor: selectedTheme.accentColor,
-                            color: selectedTheme.backgroundColor
-                        }} onClick={handleGenerateLayouts}>{
-                            loading ? <Loader2 className="h-5 w-5 animate-spin mr-2" /> : <Wand2 className="h-5 w-5 mr-2" />
-                        }
-                        {
-                            loading ? <p className="animate-pulse">Generating</p> : 'Generate Theme'
-                        }
-                    </Button>
+        <aside 
+            className="w-[420px] h-screen flex flex-col border-l border-white/10 backdrop-blur-3xl transition-all duration-1000 sticky top-0 right-0 overflow-hidden"
+            style={{ 
+                backgroundColor: `${selectedTheme.sidebarColor || selectedTheme.backgroundColor}cc`,
+            }}
+        >
+            {/* Header: Fixed at Top */}
+            <div className="p-10 pb-8 space-y-8 flex-shrink-0 z-20 shadow-[0_20px_40px_rgba(0,0,0,0.05)]">
+                <div className="space-y-1">
+                    <motion.span 
+                        initial={{ opacity: 0, y: 10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        className="text-[10px] font-black uppercase tracking-[0.4em] opacity-40"
+                        style={{ color: selectedTheme.accentColor }}
+                    >
+                        Design System
+                    </motion.span>
+                    <h2 className="text-4xl font-bold tracking-tighter" style={{ color: selectedTheme.accentColor }}>
+                        Gallery.
+                    </h2>
                 </div>
-                <ScrollArea className="flex-grow h-screen px-8 pb-8">
-                    <div className="grid grid-cols-1 gap-4 pb-8 p-4">
-                        {themes.map((theme) =>
-                            <motion.div key={theme.name}
-                                whileHover={{ scale: 1.02 }}
+
+                <Button 
+                    disabled={loading}
+                    className="w-full h-16 rounded-2xl text-[11px] font-black uppercase tracking-[0.2em] shadow-2xl transition-all duration-500 hover:scale-[1.02] active:scale-[0.98] group overflow-hidden relative"
+                    style={{
+                        backgroundColor: selectedTheme.accentColor,
+                        color: selectedTheme.backgroundColor
+                    }} 
+                    onClick={handleGenerateLayouts}
+                >
+                    <AnimatePresence mode="wait">
+                        {loading ? (
+                            <motion.div 
+                                key="loading"
+                                initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
+                                className="flex items-center gap-3"
+                            >
+                                <Loader2 className="h-4 w-4 animate-spin" />
+                                <span>Building Narrative</span>
+                            </motion.div>
+                        ) : (
+                            <motion.div 
+                                key="ready"
+                                initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
+                                className="flex items-center gap-3"
+                            >
+                                <Sparkles className="h-4 w-4 group-hover:rotate-12 transition-transform" />
+                                <span>Generate Theme</span>
+                            </motion.div>
+                        )}
+                    </AnimatePresence>
+                    
+                    {/* Shimmer Effect */}
+                    <motion.div 
+                        className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-[200%]"
+                        animate={{ translateX: '200%' }}
+                        transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+                    />
+                </Button>
+            </div>
+
+            {/* Scrollable Gallery: Now with flex-1 to fill remaining space */}
+            <ScrollArea className="flex-1 w-full h-full custom-scrollbar">
+                <div className="px-10 pb-32 space-y-6">
+                    {themes.map((theme) => {
+                        const isSelected = selectedTheme.name === theme.name;
+                        return (
+                            <motion.div 
+                                key={theme.name}
+                                whileHover={{ y: -4 }}
                                 whileTap={{ scale: 0.98 }}
                             >
-                                <Button onClick={() => { onThemeSelect(theme) }} className="flex flex-col items-center justify-center p-6 w-full h-auto"
+                                <button 
+                                    onClick={() => onThemeSelect(theme)} 
+                                    className="relative flex flex-col w-full h-48 rounded-[2.5rem] overflow-hidden p-8 transition-all duration-700 text-left"
                                     style={{
                                         fontFamily: theme.fontFamily,
                                         color: theme.fontColor,
-                                        background: theme.gradientBackground || theme.backgroundColor
-                                    }}>
-                                    <div className="w-full flex flex-col items-center justify-between">
-                                        <div className="flex items-center justify-between w-full">
-                                            <div className="text-2xl font-bold">{theme.name}</div>
-                                            <div className="w-3 h-3 rounded-full" style={{ backgroundColor: theme.accentColor }}></div>
+                                        background: theme.gradientBackground || theme.backgroundColor,
+                                        boxShadow: isSelected ? `0 30px 60px -15px ${theme.accentColor}40` : '0 4px 20px rgba(0,0,0,0.05)',
+                                        border: isSelected ? `2.5px solid ${theme.accentColor}` : `1px solid ${theme.accentColor}10`
+                                    }}
+                                >
+                                    {/* Selected Indicator */}
+                                    <AnimatePresence>
+                                        {isSelected && (
+                                            <motion.div 
+                                                initial={{ scale: 0, opacity: 0 }} 
+                                                animate={{ scale: 1, opacity: 1 }}
+                                                className="absolute top-8 right-8 h-7 w-7 rounded-full flex items-center justify-center bg-white shadow-xl"
+                                            >
+                                                <Check className="h-4 w-4 text-black stroke-[4px]" />
+                                            </motion.div>
+                                        )}
+                                    </AnimatePresence>
+
+                                    <div className="h-full flex flex-col justify-between">
+                                        <div className="space-y-1">
+                                            <div className="text-[9px] font-black uppercase tracking-widest opacity-40">Identity</div>
+                                            <div className="text-2xl font-bold tracking-tighter leading-none">{theme.name}</div>
                                         </div>
-                                        <div className="space-y-1 w-full">
-                                            <div className="text-2xl font-bold" style={{ color: theme.accentColor }}>
-                                                Title
+
+                                        <div className="flex items-end justify-between">
+                                            <div className="text-5xl font-bold leading-none tracking-tighter" style={{ color: theme.accentColor }}>
+                                                Aa
                                             </div>
-                                            <div className="text-base opacity-80">
-                                                Body &{' '} <span style={{ color: theme.accentColor }}>link</span>
-                                            </div>
+                                            <div className="h-1.5 w-12 rounded-full opacity-20 mb-2" style={{ backgroundColor: theme.accentColor }} />
                                         </div>
                                     </div>
-                                </Button>
-                            </motion.div>)}
-                    </div>
-                </ScrollArea>
-            </div>
-        </>
+                                </button>
+                            </motion.div>
+                        );
+                    })}
+                </div>
+            </ScrollArea>
+
+            {/* Subtle Gradient Shadow for Scrolling */}
+            <div className="absolute bottom-0 left-0 right-0 h-20 bg-gradient-to-t from-black/10 to-transparent pointer-events-none z-10" />
+        </aside>
     )
 }
+
 export default ThemePicker;

@@ -24,11 +24,11 @@ const AppSidebar = ({recentProjects,user,...props}:{
                 >
                     <div className="flex aspect-square size-8 items-center justify-center rounded-lg text-sidebar-primary-foreground">
                         <Avatar className="h-10 w-10 rounded-full">
-                            <AvatarImage src={'/vercel.svg'} alt={`vivid-logo`}/>
-                            <AvatarFallback className="rounded-lg">VI</AvatarFallback>
+                            <AvatarImage src={'https://img.favpng.com/22/13/15/beach-logo-cartoon-tropical-island-with-palm-tree-and-sunny-sky-deNXXngy_t.jpg'} alt={`serra-logo`}/>
+                            <AvatarFallback className="rounded-lg">Se</AvatarFallback>
                         </Avatar>
                     </div>
-                    <span className="truncate text-primary text-3xl font-semibold"> Vivid</span>
+                    <span className="truncate text-primary text-5xl font-extrabold">Serra</span>
                 </SidebarMenuButton>
             </SidebarHeader>
             <SidebarContent className="px-2 mt-10 gap-y-6">

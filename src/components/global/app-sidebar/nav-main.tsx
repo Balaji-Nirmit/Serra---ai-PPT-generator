@@ -28,9 +28,9 @@ const NavMain = ({ items }: {
                                 <SidebarMenuButton asChild tooltip={item.title}
                                     className={`${pathname.includes(item.url) && 'bg-muted'}`}
                                 >
-                                    <Link href={item.url} className={`text-lg ${pathname.includes(item.url) && 'font-bold'}`}>
-                                        <item.icon/>
-                                        <span>{item.title}</span>
+                                    <Link href={item.url} className={`text-xl ${pathname.includes(item.url) && 'font-extrabold'}`}>
+                                        <item.icon className="font-extrabold"/>
+                                        <span className="font-extrabold">{item.title}</span>
                                     </Link>
                                 </SidebarMenuButton>
                             </SidebarMenuItem>

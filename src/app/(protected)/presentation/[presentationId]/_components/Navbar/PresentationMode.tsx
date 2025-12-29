@@ -42,7 +42,7 @@ const PresentationMode = ({ onClose }: Props) => {
     }, [slides.length, onClose])
     return (
         <>
-            <div className="fixed h-screen w-screen overflow-y-scroll z-50 top-0 left-0"
+            <div className="fixed h-screen w-screen overflow-y-scroll z-51 top-0 left-0"
             style={{
                 backgroundColor:currentTheme.backgroundColor
             }}
