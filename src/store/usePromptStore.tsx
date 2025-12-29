@@ -6,7 +6,7 @@ type Prompt = {
     id: string
     title: string
     content?: string
-    createdAt: string
+    createdAt: Date
     outlines: OutlineCard[] | []
 }
 type PromptStore = {
