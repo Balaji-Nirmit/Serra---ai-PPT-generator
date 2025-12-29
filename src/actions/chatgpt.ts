@@ -33,7 +33,7 @@ export const generateCreativePrompt = async (userPrompt: string) => {
             model: "gemini-2.0-flash",
             contents: finalPrompt
         })
-        const rawText = response.text.trim();
+        const rawText = response.text? response.text.trim() : '{}';
         const cleanedText = rawText.replace(/^```json\s*|```\s*$/g, '');
         const jsonResponse = JSON.parse(cleanedText);
         return { status: 200, data: jsonResponse };
@@ -551,7 +551,7 @@ Output the layouts in JSON format. Ensure there are no duplicate layouts across 
             model: "gemini-2.0-flash",
             contents: prompt
         })
-        const rawText = response.text.trim();
+        const rawText = response.text? response.text.trim() : '{}';
         
         try{
             const cleanedText = rawText.replace(/^```json\s*|```\s*$/g, '');
