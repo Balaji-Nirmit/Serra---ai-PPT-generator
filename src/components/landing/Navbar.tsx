@@ -8,6 +8,7 @@ import {
   SheetTrigger,
   SheetClose,
 } from "@/components/ui/sheet";
+import Link from "next/link";
 
 const navLinks = [
   { href: "#features", label: "Features" },
@@ -107,13 +108,10 @@ const Navbar = () => {
 
         {/* Desktop CTA */}
         <div className="hidden md:flex items-center gap-3">
-          <Button variant="ghost" size="sm" className="text-[#4d2d4d] hover:bg-[#f7f3f0]">
-            Log in
-          </Button>
-          <Button size="sm" className="bg-[#ec5e8a] hover:bg-[#e63971] text-white rounded-full gap-1">
+          <Link href={'/dashboard'} className="flex items-center justify-center gap-2 bg-[#ec5e8a] hover:bg-[#e63971] text-white rounded-full p-2">
             <Sparkles className="w-4 h-4" />
             Get Started
-          </Button>
+          </Link>
         </div>
 
         {/* Mobile Hamburger Menu */}
@@ -166,13 +164,10 @@ const Navbar = () => {
 
               {/* CTA Buttons */}
               <div className="p-4 border-t border-[#fce6ed]/50 space-y-3">
-                <Button variant="ghost" className="w-full justify-center text-[#4d2d4d]">
-                  Log in
-                </Button>
-                <Button className="w-full bg-[#ec5e8a] hover:bg-[#e63971] text-white rounded-full justify-center gap-2">
+                <Link href={'/dashboard'} className="w-full bg-[#ec5e8a] hover:bg-[#e63971] text-white rounded-full justify-center gap-2">
                   <Sparkles className="w-4 h-4" />
                   Get Started
-                </Button>
+                </Link>
               </div>
             </div>
           </SheetContent>

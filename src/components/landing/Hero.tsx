@@ -3,6 +3,7 @@ import { Sparkles, Play, Star } from "lucide-react";
 import heroIllustration from "@/assets/hero-illustration.png";
 import aiAssistant from "@/assets/ai-assistant.png";
 import floatingSlides from "@/assets/floating-slides.png";
+import Link from "next/link";
 
 const HeroSection = () => {
   return (
@@ -48,10 +49,10 @@ const HeroSection = () => {
 
           {/* CTA Buttons */}
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16">
-            <Button className="bg-[#ec5e8a] hover:bg-[#e63971] text-white rounded-full px-8 py-6 h-auto text-lg" size="lg">
+            <Link href={'/dashboard'} className="flex gap-2 justify-center items-center bg-[#ec5e8a] hover:bg-[#e63971] text-white rounded-full px-8 py-6 h-auto text-lg">
               <Sparkles className="w-5 h-5 mr-2" />
               Start Creating Free
-            </Button>
+            </Link>
             <Button className="bg-[#f0e6ff] hover:bg-[#ebd9f2] text-[#4d2d4d] rounded-full px-8 py-6 h-auto text-lg" size="lg">
               <Play className="w-5 h-5 mr-2" />
               Watch Demo
