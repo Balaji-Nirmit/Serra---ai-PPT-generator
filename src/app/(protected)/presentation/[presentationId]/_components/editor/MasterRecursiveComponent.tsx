@@ -11,7 +11,7 @@ import TableComponent from "@/components/global/editor/components/TableComponent
 import ColumnComponent from "@/components/global/editor/components/ColumnComponent"
 import CustomImage from "@/components/global/editor/components/CustomImage"
 import Blockquote from "@/components/global/editor/components/Blockquote"
-import NumberedList, { BulletList, TodoList } from "@/components/global/editor/components/ListComponent"
+import NumberedList, { ArrowList, BulletList, CardFormList, CircularList, ConnectorList, FlowchartList, HighlightList, PyramidList, SegmentedPieList, StepList, TodoList, ZigZagList, ZigZagTimelineList } from "@/components/global/editor/components/ListComponent"
 import CalloutBox from "@/components/global/editor/components/CalloutBox"
 import CodeBlock from "@/components/global/editor/components/CodeBlock"
 import TableOfContents from "@/components/global/editor/components/TableOfContents"
@@ -77,19 +77,19 @@ const ContentRenderer: React.FC<MasterRecursiveComponentProps> = React.memo(({
             </motion.div>
         case 'table':
             return <motion.div {...animationProps} className="h-full w-full">
-                <TableComponent content={content.content as string[][]} onChange={(newContent)=>onContentChange(content.id,newContent!=null?newContent:'')} initialColSize={content.initialColumns} initialRowSize={content.initialRows} isPreview={isPreview} isEditable={isEditable}/>
+                <TableComponent content={content.content as string[][]} onChange={(newContent) => onContentChange(content.id, newContent != null ? newContent : '')} initialColSize={content.initialColumns} initialRowSize={content.initialRows} isPreview={isPreview} isEditable={isEditable} />
             </motion.div>
         case 'resizable-column':
-            if(Array.isArray(content.content)){
+            if (Array.isArray(content.content)) {
                 return (
                     <motion.div {...animationProps} className="w-full h-full">
-                        <ColumnComponent 
-                        content={content.content as ContentItem[]}
-                        className={content.className}
-                        onContentChange={onContentChange}
-                        slideId={slideId}
-                        isPreview={isPreview}
-                        isEditable={isEditable }
+                        <ColumnComponent
+                            content={content.content as ContentItem[]}
+                            className={content.className}
+                            onContentChange={onContentChange}
+                            slideId={slideId}
+                            isPreview={isPreview}
+                            isEditable={isEditable}
                         />
                     </motion.div>
                 )
@@ -97,28 +97,28 @@ const ContentRenderer: React.FC<MasterRecursiveComponentProps> = React.memo(({
             return null
         case 'image':
             return <motion.div {...animationProps} className="w-full h-full">
-                <CustomImage src={content.content as string} 
-                alt={content.alt || 'image'}
-                className={content.className}
-                isEditable={isEditable}
-                isPreview={isPreview}
-                onContentChange={onContentChange}
-                contentId={content.id}
+                <CustomImage src={content.content as string}
+                    alt={content.alt || 'image'}
+                    className={content.className}
+                    isEditable={isEditable}
+                    isPreview={isPreview}
+                    onContentChange={onContentChange}
+                    contentId={content.id}
                 />
             </motion.div>
         case 'blockquote':
             return <motion.div {...animationProps} className="w-full h-full">
                 <Blockquote>
-                    <Paragraph {...commonProps}/>
+                    <Paragraph {...commonProps} />
                 </Blockquote>
             </motion.div>
         case 'numberedList':
             return (
                 <motion.div {...animationProps} className="w-full h-full">
-                    <NumberedList 
-                    items={content.content as string[]}
-                    onChange={(newItems)=>onContentChange(content.id,newItems)}
-                    className={content.className}
+                    <NumberedList
+                        items={content.content as string[]}
+                        onChange={(newItems) => onContentChange(content.id, newItems)}
+                        className={content.className}
                     />
                 </motion.div>
             )
@@ -126,9 +126,9 @@ const ContentRenderer: React.FC<MasterRecursiveComponentProps> = React.memo(({
             return (
                 <motion.div {...animationProps} className="w-full h-full">
                     <BulletList
-                    items={content.content as string[]}
-                    onChange={(newItems)=>onContentChange(content.id,newItems)}
-                    className={content.className}
+                        items={content.content as string[]}
+                        onChange={(newItems) => onContentChange(content.id, newItems)}
+                        className={content.className}
                     />
                 </motion.div>
             )
@@ -136,9 +136,119 @@ const ContentRenderer: React.FC<MasterRecursiveComponentProps> = React.memo(({
             return (
                 <motion.div {...animationProps} className="w-full h-full">
                     <TodoList
-                    items={content.content as string[]}
-                    onChange={(newItems)=>onContentChange(content.id,newItems)}
-                    className={content.className}
+                        items={content.content as string[]}
+                        onChange={(newItems) => onContentChange(content.id, newItems)}
+                        className={content.className}
+                    />
+                </motion.div>
+            )
+        case 'arrowList':
+            return (
+                <motion.div {...animationProps} className="w-full h-full">
+                    <ArrowList
+                        items={content.content as string[]}
+                        onChange={(newItems) => onContentChange(content.id, newItems)}
+                        className={content.className}
+                    />
+                </motion.div>
+            )
+        case 'stepList':
+            return (
+                <motion.div {...animationProps} className="w-full h-full">
+                    <StepList
+                        items={content.content as string[]}
+                        onChange={(newItems) => onContentChange(content.id, newItems)}
+                        className={content.className}
+                    />
+                </motion.div>
+            )
+        case 'pyramidList':
+            return (
+                <motion.div {...animationProps} className="w-full h-full">
+                    <PyramidList
+                        items={content.content as string[]}
+                        onChange={(newItems) => onContentChange(content.id, newItems)}
+                        className={content.className}
+                    />
+                </motion.div>
+            )
+        case 'cardformList':
+            return (
+                <motion.div {...animationProps} className="w-full h-full">
+                    <CardFormList
+                        items={content.content as string[]}
+                        onChange={(newItems) => onContentChange(content.id, newItems)}
+                        className={content.className}
+                    />
+                </motion.div>
+            )
+        case 'highlightList':
+            return (
+                <motion.div {...animationProps} className="w-full h-full">
+                    <HighlightList
+                        items={content.content as string[]}
+                        onChange={(newItems) => onContentChange(content.id, newItems)}
+                        className={content.className}
+                    />
+                </motion.div>
+            )
+        case 'zigzagList':
+            return (
+                <motion.div {...animationProps} className="w-full h-full">
+                    <ZigZagList
+                        items={content.content as string[]}
+                        onChange={(newItems) => onContentChange(content.id, newItems)}
+                        className={content.className}
+                    />
+                </motion.div>
+            )
+        case 'connectorList':
+            return (
+                <motion.div {...animationProps} className="w-full h-full">
+                    <ConnectorList
+                        items={content.content as string[]}
+                        onChange={(newItems) => onContentChange(content.id, newItems)}
+                        className={content.className}
+                    />
+                </motion.div>
+            )
+        case 'zigzagtimelineList':
+            return (
+                <motion.div {...animationProps} className="w-full h-full">
+                    <ZigZagTimelineList
+                        items={content.content as string[]}
+                        onChange={(newItems) => onContentChange(content.id, newItems)}
+                        className={content.className}
+                    />
+                </motion.div>
+            )
+        case 'flowchartList':
+            return (
+                <motion.div {...animationProps} className="w-full h-full">
+                    <FlowchartList
+                        items={content.content as string[]}
+                        onChange={(newItems) => onContentChange(content.id, newItems)}
+                        className={content.className}
+                    />
+                </motion.div>
+            )
+        case 'circularList':
+            return (
+                <motion.div {...animationProps} className="w-full h-full">
+                    <CircularList
+                        items={content.content as string[]}
+                        onChange={(newItems) => onContentChange(content.id, newItems)}
+                        className={content.className}
+                    />
+                </motion.div>
+            )
+        case 'segmentedpieList':
+            return (
+                <motion.div {...animationProps} className="w-full h-full">
+                    <SegmentedPieList
+                        items={content.content as string[]}
+                        onChange={(newItems) => onContentChange(content.id, newItems)}
+                        className={content.className}
                     />
                 </motion.div>
             )
@@ -146,18 +256,18 @@ const ContentRenderer: React.FC<MasterRecursiveComponentProps> = React.memo(({
             return (
                 <motion.div {...animationProps} className="w-full h-full">
                     <CalloutBox type={content.callOutType || 'info'} className={content.className}>
-                        <Paragraph {...commonProps}/>
+                        <Paragraph {...commonProps} />
                     </CalloutBox>
                 </motion.div>
-            ) 
+            )
         case 'codeBlock':
             return (
                 <motion.div {...animationProps} className="w-full h-full">
-                    <CodeBlock 
-                    code={content.code}
-                    language={content.language}
-                    onChange={()=>{}}
-                    className={content.className}
+                    <CodeBlock
+                        code={content.code}
+                        language={content.language}
+                        onChange={() => { }}
+                        className={content.className}
                     />
                 </motion.div>
             )
@@ -165,15 +275,15 @@ const ContentRenderer: React.FC<MasterRecursiveComponentProps> = React.memo(({
             return (
                 <motion.div {...animationProps} className="w-full h-full">
                     <TableOfContents
-                    items={content.content as string[]}
-                    className={content.className}
+                        items={content.content as string[]}
+                        className={content.className}
                     />
                 </motion.div>
             )
         case 'divider':
             return (
                 <motion.div {...animationProps} className="w-full h-full">
-                    <Divider className={content.className as string}/>
+                    <Divider className={content.className as string} />
                 </motion.div>
             )
         case 'column':

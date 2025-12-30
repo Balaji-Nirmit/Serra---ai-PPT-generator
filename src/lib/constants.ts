@@ -29,18 +29,29 @@ import {
   TwoImageColumnsIcon,
 } from "./IconsComponent";
 import {
+  ArrowListComponent,
   BulletListComponent,
   CalloutBoxComponent,
+  CardformListComponent,
+  CircularListComponent,
+  ConnectorListComponent,
+  FlowchartListComponent,
   Heading1,
   Heading2,
   Heading3,
   Heading4,
+  HighlightListComponent,
   NumberedListComponent,
   Paragraph,
+  PyramidListComponent,
   ResizableColumn,
+  SegmentedpieListComponent,
+  StepListComponent,
   Table,
   Title,
   TodoListComponent,
+  ZigzagListComponent,
+  ZigzagtimelineListComponent,
 } from "./slideCompoennts";
 
 export const data = {
@@ -377,6 +388,83 @@ export const component: ComponentGroup[] = [
         type: "component",
         component: TodoListComponent,
         icon: "☐",
+      },
+      {
+        componentType: "ArrowList",
+        name: "Arrow list",
+        type: "component",
+        component: ArrowListComponent,
+        icon: "➔", // Simple directional arrow
+      },
+      {
+        componentType: "StepList",
+        name: "Step list",
+        type: "component",
+        component: StepListComponent,
+        icon: "➊", // Numbered step indicator
+      },
+      {
+        componentType: "PyramidList",
+        name: "Pyramid list",
+        type: "component",
+        component: PyramidListComponent,
+        icon: "▲", // Hierarchical pyramid shape
+      },
+      {
+        componentType: "CardformList",
+        name: "Cardform list",
+        type: "component",
+        component: CardformListComponent,
+        icon: "🗂️", // Stacked cards/modules
+      },
+      {
+        componentType: "HighlightList",
+        name: "Highlight list",
+        type: "component",
+        component: HighlightListComponent,
+        icon: "🖍️", // Emphasis/marker highlight
+      },
+      {
+        componentType: "ZigzagList",
+        name: "Zigzag list",
+        type: "component",
+        component: ZigzagListComponent,
+        icon: "📈", // Alternating path
+      },
+      {
+        componentType: "ConnectorList",
+        name: "Connector list",
+        type: "component",
+        component: ConnectorListComponent,
+        icon: "🔗", // Linked points
+      },
+      {
+        componentType: "ZigzagtimeList",
+        name: "Zigzagtimeline list",
+        type: "component",
+        component: ZigzagtimelineListComponent,
+        icon: "⏳", // Time-based zig-zag
+      },
+      {
+        componentType: "FlowchartList",
+        name: "Flowchart list",
+        type: "component",
+        component: FlowchartListComponent,
+        icon: "⬇️", // Vertical process flow
+      },
+      {
+        componentType: "CircularList",
+        name: "Circular list",
+        type: "component",
+        component: CircularListComponent,
+        icon: "⭕", // Central hub ring
+      },
+      {
+        componentType: "SegmentedpieList",
+        name: "Segmentedpie list",
+        type: "component",
+        component: SegmentedpieListComponent,
+        icon: "🍕", // Divided segments
       },
     ],
   },

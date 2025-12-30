@@ -95,6 +95,73 @@ export const TodoListComponent = {
   content: ["[ ] Task 1", "[ ] Task 2", "[ ] Task 3"],
 };
 
+export const ArrowListComponent={
+  id:uuidv4(),
+  type:"arrowList" as ContentType,
+  name:"Arrow List",
+  content: ["First item", "Second item", "Third item"],
+}
+
+export const StepListComponent={
+  id:uuidv4(),
+  type:"stepList" as ContentType,
+  name:"Step List",
+  content: ["First item", "Second item", "Third item"],
+}
+export const PyramidListComponent={
+  id:uuidv4(),
+  type:"pyramidList" as ContentType,
+  name:"Pyramid List",
+  content: ["First item", "Second item", "Third item"],
+}
+export const CardformListComponent={
+  id:uuidv4(),
+  type:"cardformList" as ContentType,
+  name:"Cardform List",
+  content: ["First item", "Second item", "Third item"],
+}
+export const HighlightListComponent={
+  id:uuidv4(),
+  type:"highlightList" as ContentType,
+  name:"Highlight List",
+  content: ["First item", "Second item", "Third item"],
+}
+export const ZigzagListComponent={
+  id:uuidv4(),
+  type:"zigzagList" as ContentType,
+  name:"Zigzag List",
+  content: ["First item", "Second item", "Third item"],
+}
+export const ConnectorListComponent={
+  id:uuidv4(),
+  type:"connectorList" as ContentType,
+  name:"Connector List",
+  content: ["First item", "Second item", "Third item"],
+}
+export const ZigzagtimelineListComponent={
+  id:uuidv4(),
+  type:"zigzagtimelineList" as ContentType,
+  name:"Zigzagtimeline List",
+  content: ["First item", "Second item", "Third item"],
+}
+export const FlowchartListComponent={
+  id:uuidv4(),
+  type:"flowchartList" as ContentType,
+  name:"Flowchart List",
+  content: ["First item", "Second item", "Third item"],
+}
+export const CircularListComponent={
+  id:uuidv4(),
+  type:"circularList" as ContentType,
+  name:"Circular List",
+  content: ["First item", "Second item", "Third item"],
+}
+export const SegmentedpieListComponent={
+  id:uuidv4(),
+  type:"segmentedpieList" as ContentType,
+  name:"Segmentedpie List",
+  content: ["First item", "Second item", "Third item"],
+}
 
 export const CalloutBoxComponent = {
   id: uuidv4(),
